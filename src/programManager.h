@@ -3,10 +3,12 @@
 Maneja los loops y distintas pantallas del juego.
 */
 
-enum class ProgramStatus {
-	INGAME
-};
+namespace MoonPatrol {
+	enum class ProgramStatus {
+		INGAME
+	};
 
-void SetGameShouldClose(bool value);
-void SetProgramStatus(ProgramStatus status);
-void StartProgram();
+	void setGameShouldClose(bool value);
+	void setProgramStatus(ProgramStatus status);
+	void startProgram();
+}

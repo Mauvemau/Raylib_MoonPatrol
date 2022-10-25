@@ -16,7 +16,7 @@
     <ClCompile Include="src\programManager.cpp">
       <Filter>Archivos de recursos</Filter>
     </ClCompile>
-    <ClCompile Include="src\game.cpp">
+    <ClCompile Include="src\game\game.cpp">
       <Filter>Archivos de recursos\Game</Filter>
     </ClCompile>
   </ItemGroup>
@@ -24,7 +24,7 @@
     <ClInclude Include="src\programManager.h">
       <Filter>Archivos de recursos</Filter>
     </ClInclude>
-    <ClInclude Include="src\game.h">
+    <ClInclude Include="src\game\game.h">
       <Filter>Archivos de recursos\Game</Filter>
     </ClInclude>
   </ItemGroup>

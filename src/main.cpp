@@ -1,6 +1,6 @@
 #include "programManager.h"
 
 int main() {
-	StartProgram();
+	MoonPatrol::startProgram();
 	return 0;
 }

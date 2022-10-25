@@ -1,75 +1,79 @@
 #include "raylib.h"
 
 #include "programManager.h"
-#include "game.h"
+#include "game/game.h"
 
 #include <iostream>
 
-ProgramStatus programStatus; // El estado actual del juego.
-bool gameShouldClose; // Para salir del game loop.
+namespace MoonPatrol {
 
-const int screenWidth = 1024;
-const int screenHeight = 768;
+	ProgramStatus programStatus; // El estado actual del juego.
+	bool gameShouldClose; // Para salir del game loop.
 
-static void InitRespectiveStatus(ProgramStatus status);
-static void CloseProgram();
-static void UpdateProgram();
-static void InitProgram();
+	const int screenWidth = 1024;
+	const int screenHeight = 768;
 
-// --
+	static void initRespectiveStatus(ProgramStatus status);
+	static void closeProgram();
+	static void updateProgram();
+	static void initProgram();
 
-void InitRespectiveStatus(ProgramStatus status) {
-	switch (status)
-	{
-	case ProgramStatus::INGAME:
-		Game::Init();
-		break;
-	default:
-		std::cout << "Invalid program Status! [ProgramManager.cpp - InitRespectiveStatus()]\n";
-		break;
-	}
-}
+	// --
 
-void CloseProgram() {
-	//Assets::Unload();
-	CloseWindow();
-}
-
-void UpdateProgram() {
-	while (!WindowShouldClose() && !gameShouldClose) {
-		switch (programStatus)
+	void initRespectiveStatus(ProgramStatus status) {
+		switch (status)
 		{
 		case ProgramStatus::INGAME:
-			Game::Update();
+			Game::init();
 			break;
 		default:
-			std::cout << "Invalid program Status! [ProgramManager.cpp - UpdateProgram()]\n";
+			std::cout << "Invalid program Status! [ProgramManager.cpp - InitRespectiveStatus()]\n";
 			break;
 		}
 	}
-}
 
-void InitProgram() {
-	InitWindow(screenWidth, screenHeight, "Raylib Asteroids");
-	//SetExitKey(KEY_NULL); // No queremos que la ventana se cierre con escape.
-	//Assets::Init(); // Cargamos los assets.
-	//Settings::InitSettings(); // Se inicializan las settings default cuando se ejecuta el programa.
-	SetProgramStatus(ProgramStatus::INGAME);
-}
+	void closeProgram() {
+		//Assets::Unload();
+		CloseWindow();
+	}
 
-// Global
+	void updateProgram() {
+		while (!WindowShouldClose() && !gameShouldClose) {
+			switch (programStatus)
+			{
+			case ProgramStatus::INGAME:
+				Game::update();
+				break;
+			default:
+				std::cout << "Invalid program Status! [ProgramManager.cpp - UpdateProgram()]\n";
+				break;
+			}
+		}
+	}
 
-void SetGameShouldClose(bool value) {
-	gameShouldClose = value;
-}
+	void initProgram() {
+		InitWindow(screenWidth, screenHeight, "Raylib Asteroids");
+		//SetExitKey(KEY_NULL); // No queremos que la ventana se cierre con escape.
+		//Assets::Init(); // Cargamos los assets.
+		//Settings::InitSettings(); // Se inicializan las settings default cuando se ejecuta el programa.
+		setProgramStatus(ProgramStatus::INGAME);
+	}
 
-void SetProgramStatus(ProgramStatus status) {
-	InitRespectiveStatus(status);
-	programStatus = status;
-}
+	// Global
 
-void StartProgram() {
-	InitProgram();
-	UpdateProgram();
-	CloseProgram();
+	void setGameShouldClose(bool value) {
+		gameShouldClose = value;
+	}
+
+	void setProgramStatus(ProgramStatus status) {
+		initRespectiveStatus(status);
+		programStatus = status;
+	}
+
+	void startProgram() {
+		initProgram();
+		updateProgram();
+		closeProgram();
+	}
+
 }
