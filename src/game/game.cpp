@@ -30,8 +30,7 @@ namespace MoonPatrol {
 		}
 
 		void init() {
-			player = Vehicles::create();
-			Vehicles::init(player);
+			Vehicles::init(player, 400.0f);
 		}
 
 	}

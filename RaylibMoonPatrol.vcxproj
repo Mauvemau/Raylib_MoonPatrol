@@ -150,6 +150,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\game\collisionManager.cpp" />
     <ClCompile Include="src\game\game.cpp" />
     <ClCompile Include="src\game\inputManager.cpp" />
     <ClCompile Include="src\game\vehicle.cpp" />
@@ -157,6 +158,7 @@
     <ClCompile Include="src\programManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\game\collisionManager.h" />
     <ClInclude Include="src\game\game.h" />
     <ClInclude Include="src\game\inputManager.h" />
     <ClInclude Include="src\game\vehicle.h" />

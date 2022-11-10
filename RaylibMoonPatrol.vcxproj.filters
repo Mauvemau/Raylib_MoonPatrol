@@ -25,6 +25,9 @@
     <ClCompile Include="src\game\inputManager.cpp">
       <Filter>Source Files\Game</Filter>
     </ClCompile>
+    <ClCompile Include="src\game\collisionManager.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\programManager.h">
@@ -37,6 +40,9 @@
       <Filter>Source Files\Game</Filter>
     </ClInclude>
     <ClInclude Include="src\game\inputManager.h">
+      <Filter>Source Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\collisionManager.h">
       <Filter>Source Files\Game</Filter>
     </ClInclude>
   </ItemGroup>

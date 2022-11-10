@@ -1,5 +1,6 @@
 
 #include "vehicle.h"
+#include "collisionManager.h"
 
 namespace MoonPatrol {
 	namespace Vehicles {
@@ -14,7 +15,21 @@ namespace MoonPatrol {
 			Vehicle vehicle;
 			vehicle.position = { 0, 0 };
 			vehicle.size = { 0, 0 };
+			vehicle.speed = 0;
 			return vehicle;
+		}
+
+		void move(Vehicle& vehicle, int direction) {
+			if(!Collisions::vehicleWall(vehicle))
+				vehicle.position.x += direction * (vehicle.speed * GetFrameTime());
+			else {
+				if (vehicle.position.x < (GetScreenWidth() * .5f)) {
+					vehicle.position.x = (vehicle.size.x * .5f);
+				}
+				else {
+					vehicle.position.x = static_cast<float>(GetScreenWidth() - (vehicle.size.x * .5f));
+				}
+			}
 		}
 
 		void draw(Vehicle vehicle) {
@@ -26,9 +41,11 @@ namespace MoonPatrol {
 			// Vacio y Ensalada.
 		}
 
-		void init(Vehicle& vehicle) {
+		void init(Vehicle& vehicle, float speed) {
+			vehicle = create();
 			vehicle.position = { static_cast<float>(GetScreenWidth() * .25f), static_cast<float>(GetScreenHeight() * .75f) };
 			vehicle.size = { static_cast<float>(GetScreenHeight() * .15f), static_cast<float>(GetScreenHeight() * .15f) };
+			vehicle.speed = speed;
 		}
 	}
 }

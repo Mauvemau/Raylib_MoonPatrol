@@ -5,6 +5,6 @@
 namespace MoonPatrol {
 	namespace Input {
 
-		void update(Vehicles::Vehicle vehicle);
+		void update(Vehicles::Vehicle& vehicle);
 	}
 }
