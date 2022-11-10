@@ -3,9 +3,8 @@
 #include "vehicle.h"
 
 namespace MoonPatrol {
-	namespace Game {
+	namespace Input {
 
-		void update();
-		void init();
+		void update(Vehicles::Vehicle vehicle);
 	}
 }
