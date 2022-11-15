@@ -36,7 +36,7 @@ namespace MoonPatrol {
 		void init(Obstacle& obstacle) {
 			obstacle = create();
 			obstacle.size = { static_cast<float>(GetScreenHeight() * .1f), static_cast<float>(GetScreenHeight() * .1f) };
-			obstacle.position = { static_cast<float>((GetScreenWidth() * 1) + obstacle.size.x) , static_cast<float>(GetScreenHeight() * .725f) };
+			obstacle.position = { static_cast<float>((GetScreenWidth() * 1) + obstacle.size.x) , static_cast<float>(GetScreenHeight() * .7f) };
 		}
 
 	}

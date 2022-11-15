@@ -19,7 +19,7 @@ namespace MoonPatrol {
 		// Public
 
 		bool vehicleWall(Vehicles::Vehicle vehicle) {
-			return ((vehicle.position.x - (vehicle.size.x * .5f)) < 0 || (vehicle.position.x + (vehicle.size.x * .5f)) > GetScreenWidth());
+			return (vehicle.position.x < 0 || (vehicle.position.x + vehicle.size.x) > GetScreenWidth());
 		}
 
 		bool vehicleObstacle(Vehicles::Vehicle vehicle, Obstacles::Obstacle obstacle) {

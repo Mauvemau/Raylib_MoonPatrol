@@ -31,7 +31,7 @@ namespace MoonPatrol {
 			BeginDrawing();
 			ClearBackground(BLACK);
 
-			DrawRectangle(0, static_cast<int>(GetScreenHeight() * .75f + (player.size.y * .5f)), GetScreenWidth(), static_cast<int>(GetScreenHeight() * .25f - (player.size.y * .5f)), DARKPURPLE);
+			DrawRectangle(0, static_cast<int>(GetScreenHeight() * .8f), GetScreenWidth(), static_cast<int>(GetScreenHeight() * .2f), DARKPURPLE);
 
 			Vehicles::draw(player);
 
@@ -70,11 +70,16 @@ namespace MoonPatrol {
 			return curTime;
 		}
 
+		float getFloorHeight(float xPos) {
+			static_cast<void>(xPos);
+			return (GetScreenHeight() * .8f);
+		}
+
 		void update() {
 			if (!paused) {
 				Input::update(player);
 
-				Vehicles::update(player);
+				Vehicles::update(player, getFloorHeight(0));
 
 				Obstacles::update(obstacle, 200.0f);
 
@@ -97,7 +102,7 @@ namespace MoonPatrol {
 
 		void init() {
 			startTime = chrono::steady_clock::now();
-			Vehicles::init(player, 400.0f, (GetScreenHeight() * .2f));
+			Vehicles::init(player, 400.0f, .5f, 1.0f);
 			Obstacles::init(obstacle);
 
 			paused = false;

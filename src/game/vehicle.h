@@ -7,8 +7,10 @@ namespace MoonPatrol {
 		struct Vehicle {
 			Vector2 position;
 			Vector2 size;
+			float verticalAcceleration;
 			float speed;
-			float jumpHeight;
+			float gravity;
+			float jumpForce;
 			Color color;
 		};
 
@@ -20,7 +22,7 @@ namespace MoonPatrol {
 		void move(Vehicle& vehicle, int direction);
 
 		void draw(Vehicle vehicle);
-		void update(Vehicle& vehicle);
-		void init(Vehicle& vehicle, float speed, float jumpHeight);
+		void update(Vehicle& vehicle, float floorLevel);
+		void init(Vehicle& vehicle, float speed, float jumpForce, float gravity);
 	}
 }
