@@ -101,6 +101,7 @@ namespace MoonPatrol {
 			Obstacles::init(obstacle);
 
 			paused = false;
+			pauseStartTime = chrono::steady_clock::now();
 		}
 
 	}
