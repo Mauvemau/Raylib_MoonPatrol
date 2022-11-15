@@ -13,6 +13,9 @@ namespace MoonPatrol {
 	const int screenWidth = 1024;
 	const int screenHeight = 768;
 
+	const char* programName = "Moon Patrol";
+	const char* programVersion = "0.1";
+
 	static void initRespectiveStatus(ProgramStatus status);
 	static void closeProgram();
 	static void updateProgram();
@@ -52,7 +55,7 @@ namespace MoonPatrol {
 	}
 
 	void initProgram() {
-		InitWindow(screenWidth, screenHeight, "Raylib Asteroids");
+		InitWindow(screenWidth, screenHeight, programName);
 		//SetExitKey(KEY_NULL); // No queremos que la ventana se cierre con escape.
 		//Assets::Init(); // Cargamos los assets.
 		//Settings::InitSettings(); // Se inicializan las settings default cuando se ejecuta el programa.
@@ -60,6 +63,10 @@ namespace MoonPatrol {
 	}
 
 	// Global
+
+	const char* getProgramVersion() {
+		return programVersion;
+	}
 
 	void setGameShouldClose(bool value) {
 		gameShouldClose = value;

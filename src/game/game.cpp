@@ -1,4 +1,7 @@
 #include "game.h"
+#include "programManager.h"
+#include "vehicle.h"
+#include "obstacle.h"
 #include "inputManager.h"
 
 #include <iostream>
@@ -12,6 +15,7 @@ namespace MoonPatrol {
 		// Private
 
 		Vehicles::Vehicle player;
+		Obstacles::Obstacle obstacle;
 
 		chrono::steady_clock::time_point startTime;
 
@@ -27,6 +31,13 @@ namespace MoonPatrol {
 
 			Vehicles::draw(player);
 
+			Obstacles::draw(obstacle);
+
+			DrawText(getProgramVersion(), 
+				static_cast<int>(GetScreenHeight() * .01f), 
+				static_cast<int>(GetScreenHeight() * .01f), 
+				static_cast<int>(GetScreenHeight() * .04f), 
+				RAYWHITE);
 
 			EndDrawing();
 		}
@@ -40,7 +51,10 @@ namespace MoonPatrol {
 
 		void update() {
 			Input::update(player);
+
 			Vehicles::update(player);
+
+			Obstacles::update(obstacle, 200.0f);
 
 			draw();
 		}
@@ -48,6 +62,7 @@ namespace MoonPatrol {
 		void init() {
 			startTime = chrono::steady_clock::now();
 			Vehicles::init(player, 400.0f, (GetScreenHeight() * .2f));
+			Obstacles::init(obstacle);
 		}
 
 	}

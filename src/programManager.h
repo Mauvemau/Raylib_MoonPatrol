@@ -8,6 +8,8 @@ namespace MoonPatrol {
 		INGAME
 	};
 
+	const char* getProgramVersion();
+
 	void setGameShouldClose(bool value);
 	void setProgramStatus(ProgramStatus status);
 	void startProgram();

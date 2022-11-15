@@ -8,6 +8,9 @@
     <Filter Include="Source Files\Game">
       <UniqueIdentifier>{c2fb6a8d-db79-4ab3-bfea-f7637eee42ab}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Game\Objects">
+      <UniqueIdentifier>{c8635798-a9a1-4cf6-a8f4-594496c21805}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -19,14 +22,17 @@
     <ClCompile Include="src\game\game.cpp">
       <Filter>Source Files\Game</Filter>
     </ClCompile>
-    <ClCompile Include="src\game\vehicle.cpp">
-      <Filter>Source Files\Game</Filter>
-    </ClCompile>
     <ClCompile Include="src\game\inputManager.cpp">
       <Filter>Source Files\Game</Filter>
     </ClCompile>
     <ClCompile Include="src\game\collisionManager.cpp">
       <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\vehicle.cpp">
+      <Filter>Source Files\Game\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="src\game\obstacle.cpp">
+      <Filter>Source Files\Game\Objects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -36,14 +42,17 @@
     <ClInclude Include="src\game\game.h">
       <Filter>Source Files\Game</Filter>
     </ClInclude>
-    <ClInclude Include="src\game\vehicle.h">
-      <Filter>Source Files\Game</Filter>
-    </ClInclude>
     <ClInclude Include="src\game\inputManager.h">
       <Filter>Source Files\Game</Filter>
     </ClInclude>
     <ClInclude Include="src\game\collisionManager.h">
       <Filter>Source Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\obstacle.h">
+      <Filter>Source Files\Game\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\vehicle.h">
+      <Filter>Source Files\Game\Objects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
