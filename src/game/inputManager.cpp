@@ -21,7 +21,7 @@ namespace MoonPatrol {
 				Vehicles::move(vehicle, +1);
 			}
 			if (IsKeyPressed(KEY_X) || IsKeyPressed(KEY_SPACE)) {
-				// Handle Jump
+				Vehicles::jump(vehicle);
 			}
 			if (IsKeyDown(KEY_Z) || IsKeyDown(KEY_LEFT_CONTROL)) {
 				// Handle Shooting

@@ -8,14 +8,16 @@ namespace MoonPatrol {
 			Vector2 position;
 			Vector2 size;
 			float speed;
+			float jumpHeight;
 		};
 
 		Vehicle create();
 
+		void jump(Vehicle& vehicle);
 		void move(Vehicle& vehicle, int direction);
 
 		void draw(Vehicle vehicle);
-		void update();
-		void init(Vehicle& vehicle, float speed);
+		void update(Vehicle& vehicle);
+		void init(Vehicle& vehicle, float speed, float jumpHeight);
 	}
 }

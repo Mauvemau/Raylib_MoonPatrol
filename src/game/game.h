@@ -5,6 +5,8 @@
 namespace MoonPatrol {
 	namespace Game {
 
+		float getTime();
+
 		void update();
 		void init();
 	}
