@@ -22,7 +22,12 @@ namespace MoonPatrol {
 			vehicle.size = { 0, 0 };
 			vehicle.speed = 0;
 			vehicle.jumpHeight = 0;
+			vehicle.color = RAYWHITE;
 			return vehicle;
+		}
+
+		void setColor(Vehicle& vehicle, Color color) {
+			vehicle.color = color;
 		}
 
 		void jump(Vehicle& vehicle) {
@@ -46,23 +51,24 @@ namespace MoonPatrol {
 		}
 
 		void draw(Vehicle vehicle) {
-			Rectangle rec = { vehicle.position.x, vehicle.position.y, vehicle.size.x, vehicle.size.y };
-			DrawRectanglePro(rec, { (vehicle.size.x * .5f), (vehicle.size.y * .5f) }, 0, RED);
+			DrawRectangle(static_cast<int>(vehicle.position.x), static_cast<int>(vehicle.position.y),
+						  static_cast<int>(vehicle.size.x), static_cast<int>(vehicle.size.y), vehicle.color);
 		}
 
 		void update(Vehicle& vehicle) {
 			if (!floored && Game::getTime() > nextFloor) {
 				floored = true;
-				vehicle.position.y = static_cast<float>(GetScreenHeight() * .75f);
+				vehicle.position.y = static_cast<float>(GetScreenHeight() * .675f);
 			}
 		}
 
 		void init(Vehicle& vehicle, float speed, float jumpHeight) {
 			vehicle = create();
-			vehicle.position = { static_cast<float>(GetScreenWidth() * .25f), static_cast<float>(GetScreenHeight() * .75f) };
+			vehicle.position = { static_cast<float>(GetScreenWidth() * .2f), static_cast<float>(GetScreenHeight() * .675f) };
 			vehicle.size = { static_cast<float>(GetScreenHeight() * .15f), static_cast<float>(GetScreenHeight() * .15f) };
 			vehicle.speed = speed;
 			vehicle.jumpHeight = jumpHeight;
+			vehicle.color = RED;
 
 			nextFloor = 0;
 			floored = true;

@@ -4,6 +4,8 @@
 
 namespace MoonPatrol {
 	namespace Game {
+		
+		void setPaused(bool value);
 
 		float getTime();
 

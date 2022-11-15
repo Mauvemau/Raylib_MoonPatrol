@@ -23,8 +23,8 @@ namespace MoonPatrol {
 		}
 
 		void draw(Obstacle obstacle) {
-			Rectangle rec = { obstacle.position.x, obstacle.position.y, obstacle.size.x, obstacle.size.y };
-			DrawRectanglePro(rec, { (obstacle.size.x * .5f), (obstacle.size.y * .5f) }, 0, GREEN);
+			DrawRectangle(static_cast<int>(obstacle.position.x), static_cast<int>(obstacle.position.y), 
+						  static_cast<int>(obstacle.size.x), static_cast<int>(obstacle.size.y), GREEN);
 		}
 
 		void update(Obstacle& obstacle, float speed) {
@@ -36,7 +36,7 @@ namespace MoonPatrol {
 		void init(Obstacle& obstacle) {
 			obstacle = create();
 			obstacle.size = { static_cast<float>(GetScreenHeight() * .1f), static_cast<float>(GetScreenHeight() * .1f) };
-			obstacle.position = { static_cast<float>((GetScreenWidth() * 1) + obstacle.size.x) , static_cast<float>(GetScreenHeight() * .775f) };
+			obstacle.position = { static_cast<float>((GetScreenWidth() * 1) + obstacle.size.x) , static_cast<float>(GetScreenHeight() * .725f) };
 		}
 
 	}

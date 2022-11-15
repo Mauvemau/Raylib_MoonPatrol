@@ -3,6 +3,7 @@
 #include "vehicle.h"
 #include "obstacle.h"
 #include "inputManager.h"
+#include "collisionManager.h"
 
 #include <iostream>
 #include <chrono>
@@ -18,6 +19,9 @@ namespace MoonPatrol {
 		Obstacles::Obstacle obstacle;
 
 		chrono::steady_clock::time_point startTime;
+
+		bool paused;
+		chrono::steady_clock::time_point pauseStartTime; // En caso del juego estar pausado por determinado tiempo, se lo sumamos al startTime.
 
 		void draw();
 
@@ -39,10 +43,27 @@ namespace MoonPatrol {
 				static_cast<int>(GetScreenHeight() * .04f), 
 				RAYWHITE);
 
+			if (paused) {
+				DrawText("Game Over",
+					static_cast<int>(GetScreenWidth() * .05f),
+					static_cast<int>(GetScreenHeight() * .4f),
+					static_cast<int>(GetScreenHeight() * .08f),
+					RED);
+				DrawText("Press [R] key to restart",
+					static_cast<int>(GetScreenWidth() * .05f),
+					static_cast<int>(GetScreenHeight() * .5f),
+					static_cast<int>(GetScreenHeight() * .035f),
+					RAYWHITE);
+			}
+
 			EndDrawing();
 		}
 
 		// Public
+
+		void setPaused(bool value) {
+			paused = value;
+		}
 
 		float getTime() {
 			float curTime = (static_cast<int>(chrono::duration_cast<chrono::milliseconds>(chrono::steady_clock::now() - startTime).count())) * .001f;
@@ -50,11 +71,26 @@ namespace MoonPatrol {
 		}
 
 		void update() {
-			Input::update(player);
+			if (!paused) {
+				Input::update(player);
 
-			Vehicles::update(player);
+				Vehicles::update(player);
 
-			Obstacles::update(obstacle, 200.0f);
+				Obstacles::update(obstacle, 200.0f);
+
+				if (Collisions::vehicleObstacle(player, obstacle)) {
+					Vehicles::setColor(player, ORANGE);
+					setPaused(true);
+				}
+				else {
+					Vehicles::setColor(player, RED);
+				}
+			}
+
+			if (paused) {
+				if (IsKeyPressed(KEY_R))
+					setProgramStatus(ProgramStatus::INGAME);
+			}
 
 			draw();
 		}
@@ -63,6 +99,8 @@ namespace MoonPatrol {
 			startTime = chrono::steady_clock::now();
 			Vehicles::init(player, 400.0f, (GetScreenHeight() * .2f));
 			Obstacles::init(obstacle);
+
+			paused = false;
 		}
 
 	}

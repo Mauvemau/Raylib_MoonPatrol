@@ -9,9 +9,12 @@ namespace MoonPatrol {
 			Vector2 size;
 			float speed;
 			float jumpHeight;
+			Color color;
 		};
 
 		Vehicle create();
+
+		void setColor(Vehicle& vehicle, Color color);
 
 		void jump(Vehicle& vehicle);
 		void move(Vehicle& vehicle, int direction);
