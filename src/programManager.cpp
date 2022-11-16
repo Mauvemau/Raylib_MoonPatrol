@@ -2,6 +2,7 @@
 
 #include "programManager.h"
 #include "game/game.h"
+#include "menu/mainMenu.h"
 
 #include <iostream>
 
@@ -24,10 +25,14 @@ namespace MoonPatrol {
 	// --
 
 	void initRespectiveStatus(ProgramStatus status) {
-		switch (status)
-		{
+		switch (status) {
 		case ProgramStatus::INGAME:
 			Game::init();
+			break;
+		case ProgramStatus::MAINMENU:
+			MainMenu::init();
+			break;
+		case ProgramStatus::CREDITS:
 			break;
 		default:
 			std::cout << "Invalid program Status! [ProgramManager.cpp - InitRespectiveStatus()]\n";
@@ -42,10 +47,14 @@ namespace MoonPatrol {
 
 	void updateProgram() {
 		while (!WindowShouldClose() && !gameShouldClose) {
-			switch (programStatus)
-			{
+			switch (programStatus) {
 			case ProgramStatus::INGAME:
 				Game::update();
+				break;
+			case ProgramStatus::MAINMENU:
+				MainMenu::update();
+				break;
+			case ProgramStatus::CREDITS:
 				break;
 			default:
 				std::cout << "Invalid program Status! [ProgramManager.cpp - UpdateProgram()]\n";
@@ -56,10 +65,10 @@ namespace MoonPatrol {
 
 	void initProgram() {
 		InitWindow(screenWidth, screenHeight, programName);
-		//SetExitKey(KEY_NULL); // No queremos que la ventana se cierre con escape.
+		SetExitKey(KEY_NULL); // No queremos que la ventana se cierre con escape.
 		//Assets::Init(); // Cargamos los assets.
 		//Settings::InitSettings(); // Se inicializan las settings default cuando se ejecuta el programa.
-		setProgramStatus(ProgramStatus::INGAME);
+		setProgramStatus(ProgramStatus::MAINMENU);
 	}
 
 	// Global

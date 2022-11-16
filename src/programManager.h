@@ -5,7 +5,9 @@ Maneja los loops y distintas pantallas del juego.
 
 namespace MoonPatrol {
 	enum class ProgramStatus {
-		INGAME
+		INGAME,
+		MAINMENU,
+		CREDITS
 	};
 
 	const char* getProgramVersion();

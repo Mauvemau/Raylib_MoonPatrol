@@ -157,7 +157,10 @@
     <ClCompile Include="src\game\obstacle.cpp" />
     <ClCompile Include="src\game\vehicle.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\menu\button.cpp" />
+    <ClCompile Include="src\menu\mainMenu.cpp" />
     <ClCompile Include="src\programManager.cpp" />
+    <ClCompile Include="src\utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game\collisionManager.h" />
@@ -165,7 +168,11 @@
     <ClInclude Include="src\game\inputManager.h" />
     <ClInclude Include="src\game\obstacle.h" />
     <ClInclude Include="src\game\vehicle.h" />
+    <ClInclude Include="src\menu\button.h" />
+    <ClInclude Include="src\menu\credits.h" />
+    <ClInclude Include="src\menu\mainMenu.h" />
     <ClInclude Include="src\programManager.h" />
+    <ClInclude Include="src\utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
