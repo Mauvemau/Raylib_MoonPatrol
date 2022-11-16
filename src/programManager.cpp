@@ -3,6 +3,7 @@
 #include "programManager.h"
 #include "game/game.h"
 #include "menu/mainMenu.h"
+#include "menu/credits.h"
 
 #include <iostream>
 
@@ -33,6 +34,7 @@ namespace MoonPatrol {
 			MainMenu::init();
 			break;
 		case ProgramStatus::CREDITS:
+			Credits::init();
 			break;
 		default:
 			std::cout << "Invalid program Status! [ProgramManager.cpp - InitRespectiveStatus()]\n";
@@ -55,6 +57,7 @@ namespace MoonPatrol {
 				MainMenu::update();
 				break;
 			case ProgramStatus::CREDITS:
+				Credits::update();
 				break;
 			default:
 				std::cout << "Invalid program Status! [ProgramManager.cpp - UpdateProgram()]\n";

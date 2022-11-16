@@ -158,6 +158,7 @@
     <ClCompile Include="src\game\vehicle.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\menu\button.cpp" />
+    <ClCompile Include="src\menu\credits.cpp" />
     <ClCompile Include="src\menu\mainMenu.cpp" />
     <ClCompile Include="src\programManager.cpp" />
     <ClCompile Include="src\utils.cpp" />

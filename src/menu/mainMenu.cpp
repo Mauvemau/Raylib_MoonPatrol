@@ -64,14 +64,13 @@ namespace MoonPatrol {
 				setProgramStatus(ProgramStatus::INGAME);
 				break;
 			case MainMenu::Options::CREDITS:
-				//setProgramStatus(ProgramStatus::CREDITS);
-				std::cout << "Credits not yet implemented.\n";
+				setProgramStatus(ProgramStatus::CREDITS);
 				break;
 			case MainMenu::Options::EXIT:
 				setGameShouldClose(true);
 				break;
 			default:
-				std::cout << "Invalid Option! [MainMenu.cpp - SelectOption()]\n";
+				std::cout << "Invalid Option! [MainMenu.cpp - selectOption()]\n";
 				break;
 			}
 		}
@@ -79,8 +78,9 @@ namespace MoonPatrol {
 		void initButtons() {
 			float spacing = 0;
 			for (int i = 0; i < amountButtons; i++) {
-				if (i > 0)
+				if (i > 0) {
 					spacing += buttons[0].size.y + GetScreenHeight() * .025f;
+				}
 				buttons[i] = Buttons::create(i,
 					Vector2{ static_cast<float>(GetScreenWidth() * .5), static_cast<float>(GetScreenHeight() * .45) + spacing },
 					Vector2{ static_cast<float>(GetScreenWidth() * .3), static_cast<float>(GetScreenHeight() * .1) },
@@ -89,7 +89,7 @@ namespace MoonPatrol {
 		}
 
 		void drawCredits() {
-			const char* text = "Game built by Salazar using Raylib by Ray";
+			const char* text = "Game built by Mauvemau using Raylib";
 			int fontSize = static_cast<int>(GetScreenHeight() * .025f);
 			int textWide = MeasureText(text, fontSize);
 			DrawText(text, static_cast<int>((GetScreenWidth() * .99) - textWide), static_cast<int>((GetScreenHeight() * .99) - fontSize), fontSize, WHITE);
@@ -123,8 +123,9 @@ namespace MoonPatrol {
 		void update() {
 			updateCursor();
 			for (int i = 0; i < amountButtons; i++) {
-				if (Buttons::update(buttons[i]))
+				if (Buttons::update(buttons[i])) {
 					selectOption((Options)buttons[i].id);
+				}
 			}
 
 			draw();

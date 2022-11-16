@@ -1,4 +1,5 @@
 #include "inputManager.h"
+#include "programManager.h"
 
 #include <iostream>
 
@@ -25,6 +26,10 @@ namespace MoonPatrol {
 			}
 			if (IsKeyDown(KEY_Z) || IsKeyDown(KEY_LEFT_CONTROL)) {
 				// Handle Shooting
+			}
+			//
+			if (IsKeyPressed(KEY_ESCAPE)) {
+				setProgramStatus(ProgramStatus::MAINMENU);
 			}
 		}
 	}

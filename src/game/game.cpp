@@ -43,6 +43,12 @@ namespace MoonPatrol {
 				static_cast<int>(GetScreenHeight() * .04f), 
 				RAYWHITE);
 
+			DrawText("Press [ESC] key to return to the menu",
+				static_cast<int>(GetScreenHeight() * .01f),
+				static_cast<int>(GetScreenHeight() * .96f),
+				static_cast<int>(GetScreenHeight() * .035f),
+				RAYWHITE);
+
 			if (paused) {
 				DrawText("Game Over",
 					static_cast<int>(GetScreenWidth() * .05f),

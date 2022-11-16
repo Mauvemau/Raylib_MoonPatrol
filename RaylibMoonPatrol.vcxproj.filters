@@ -49,6 +49,9 @@
     <ClCompile Include="src\menu\button.cpp">
       <Filter>Source Files\Menu\Objects</Filter>
     </ClCompile>
+    <ClCompile Include="src\menu\credits.cpp">
+      <Filter>Source Files\Menu</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\programManager.h">
