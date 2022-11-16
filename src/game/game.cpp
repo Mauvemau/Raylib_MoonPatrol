@@ -1,5 +1,6 @@
 #include "game.h"
 #include "programManager.h"
+#include "terrain.h"
 #include "vehicle.h"
 #include "obstacle.h"
 #include "inputManager.h"
@@ -18,6 +19,10 @@ namespace MoonPatrol {
 		Vehicles::Vehicle player;
 		Obstacles::Obstacle obstacle;
 
+		Terrains::Terrain floor;
+		Terrains::Terrain mountainsNear;
+		Terrains::Terrain mountainsBack;
+
 		chrono::steady_clock::time_point startTime;
 
 		bool paused;
@@ -29,9 +34,11 @@ namespace MoonPatrol {
 
 		void draw() {
 			BeginDrawing();
-			ClearBackground(BLACK);
+			ClearBackground({ 30, 15, 55, 255 });
 
-			DrawRectangle(0, static_cast<int>(GetScreenHeight() * .8f), GetScreenWidth(), static_cast<int>(GetScreenHeight() * .2f), DARKPURPLE);
+			Terrains::draw(mountainsBack);
+			Terrains::draw(mountainsNear);
+			Terrains::draw(floor);
 
 			Vehicles::draw(player);
 
@@ -87,7 +94,11 @@ namespace MoonPatrol {
 
 				Vehicles::update(player, getFloorHeight(0));
 
-				Obstacles::update(obstacle, 200.0f);
+				//Obstacles::update(obstacle, 300.0f);
+
+				Terrains::update(floor);
+				Terrains::update(mountainsNear);
+				Terrains::update(mountainsBack);
 
 				if (Collisions::vehicleObstacle(player, obstacle)) {
 					Vehicles::setColor(player, ORANGE);
@@ -108,8 +119,13 @@ namespace MoonPatrol {
 
 		void init() {
 			startTime = chrono::steady_clock::now();
+
 			Vehicles::init(player, 400.0f, .5f, 1.0f);
 			Obstacles::init(obstacle);
+
+			Terrains::init(floor, GetScreenWidth() * .1f, GetScreenHeight() * .85f, GetScreenHeight() * .75f, 300.0f, {230, 180, 80, 255});
+			Terrains::init(mountainsNear, GetScreenWidth() * .2f, GetScreenHeight() * .7f, GetScreenHeight() * .5f, 100.0f, { 145, 120, 50, 255 });
+			Terrains::init(mountainsBack, GetScreenWidth() * .3f, GetScreenHeight() * .7f, GetScreenHeight() * .4f, 50.0f, { 40, 30, 15, 255 });
 
 			paused = false;
 			pauseStartTime = chrono::steady_clock::now();

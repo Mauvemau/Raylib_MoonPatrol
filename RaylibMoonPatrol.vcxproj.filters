@@ -52,6 +52,9 @@
     <ClCompile Include="src\menu\credits.cpp">
       <Filter>Source Files\Menu</Filter>
     </ClCompile>
+    <ClCompile Include="src\game\terrain.cpp">
+      <Filter>Source Files\Game\Objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\programManager.h">
@@ -83,6 +86,9 @@
     </ClInclude>
     <ClInclude Include="src\menu\button.h">
       <Filter>Source Files\Menu\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\terrain.h">
+      <Filter>Source Files\Game\Objects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
