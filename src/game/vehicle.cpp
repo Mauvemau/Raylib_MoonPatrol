@@ -3,10 +3,14 @@
 #include "collisionManager.h"
 #include "game.h"
 
+#include <iostream>
+
 namespace MoonPatrol {
 	namespace Vehicles {
 
 		// Private
+
+		bool floored;
 
 		// --
 
@@ -20,6 +24,7 @@ namespace MoonPatrol {
 			vehicle.speed = 0;
 			vehicle.gravity = 0;
 			vehicle.jumpForce = 0;
+			vehicle.heigth = 0;
 			vehicle.color = RAYWHITE;
 			return vehicle;
 		}
@@ -29,8 +34,10 @@ namespace MoonPatrol {
 		}
 
 		void jump(Vehicle& vehicle) {
-			if(vehicle.position.y + vehicle.size.y >= Game::getFloorHeight(0))
-			vehicle.verticalAcceleration -= vehicle.jumpForce;
+			if (floored) {
+				floored = false;
+				vehicle.verticalAcceleration = -vehicle.jumpForce;
+			}
 		}
 
 		void move(Vehicle& vehicle, int direction) {
@@ -50,26 +57,35 @@ namespace MoonPatrol {
 						  static_cast<int>(vehicle.size.x), static_cast<int>(vehicle.size.y), vehicle.color);
 		}
 
-		void update(Vehicle& vehicle, float floorLevel) {
-			if (vehicle.position.y + vehicle.size.y < floorLevel) {
+		void update(Vehicle& vehicle) {
+			float floorElevation = Game::getFloorElevation(vehicle.position.x + (vehicle.size.x * .5f));
+
+			if (vehicle.position.y + vehicle.size.y + vehicle.heigth < floorElevation) {
 				vehicle.verticalAcceleration += vehicle.gravity * GetFrameTime();
 			}
-			if (vehicle.position.y + vehicle.size.y > floorLevel) {
-				vehicle.verticalAcceleration = 0;
-				vehicle.position.y = floorLevel - vehicle.size.y;
+			if (vehicle.position.y + vehicle.size.y + vehicle.heigth >= floorElevation) {
+				if (vehicle.verticalAcceleration > 0) { 
+					vehicle.verticalAcceleration = 0;
+					floored = true;
+				}
+				vehicle.position.y = floorElevation - vehicle.size.y - vehicle.heigth;
 			}
 
 			vehicle.position.y += vehicle.verticalAcceleration;
 		}
 
-		void init(Vehicle& vehicle, float speed, float jumpForce, float gravity) {
+		void init(Vehicle& vehicle, Vector2 position, Vector2 size, float speed, float gravity, float jumpForce, float height) {
 			vehicle = create();
-			vehicle.position = { static_cast<float>(GetScreenWidth() * .2f), static_cast<float>(GetScreenHeight() * .6f) };
-			vehicle.size = { static_cast<float>(GetScreenHeight() * .2f), static_cast<float>(GetScreenHeight() * .2f) };
+			vehicle.position = position;
+			vehicle.size = size;
+			vehicle.position.y -= size.y;
 			vehicle.speed = speed;
 			vehicle.gravity = gravity;
 			vehicle.jumpForce = jumpForce;
+			vehicle.heigth = height;
 			vehicle.color = RED;
+
+			floored = false;
 		}
 	}
 }

@@ -7,8 +7,8 @@ namespace MoonPatrol {
 		
 		void setPaused(bool value);
 
+		float getFloorElevation(float xPos);
 		float getTime();
-		float getFloorHeight(float xPos);
 
 		void update();
 		void init();

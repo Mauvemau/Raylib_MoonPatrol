@@ -1,4 +1,5 @@
 #include "terrain.h"
+#include "utils.h"
 
 #include <iostream>
 
@@ -41,6 +42,28 @@ namespace MoonPatrol {
 			terrain.speed = 0;
 			terrain.color = WHITE;
 			return terrain;
+		}
+
+		float elevation(Terrain terrain, float xPos) {
+			Vector2 leftNode = { 0, 0 };
+			Vector2 rightNode = { 0, 0 };
+			bool found = false;
+			
+			for (int i = 1; i < terrain.amountNodes; i++) {
+				if (xPos < terrain.nodes[i].x) {
+					rightNode = { terrain.nodes[i].x, terrain.nodes[i].y };
+					leftNode = { terrain.nodes[i - 1].x, terrain.nodes[i - 1].y };
+					i = terrain.amountNodes;
+					found = true;
+				}
+			}
+
+			if (!found) {
+				std::cout << "Trying to calculate terrain elevation on an out of bounds position!\n";
+				return 0;
+			}
+
+			return Utils::LineLineIntersection(leftNode.x, leftNode.y, rightNode.x, rightNode.y, xPos, leftNode.y, xPos, rightNode.y).y;
 		}
 
 		void draw(Terrain terrain) {

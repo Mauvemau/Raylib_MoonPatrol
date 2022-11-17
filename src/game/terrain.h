@@ -22,6 +22,8 @@ namespace MoonPatrol {
 
 		Terrain create();
 
+		float elevation(Terrain terrain, float xPos); // Devuelve la altura del piso en una posicion en x especifica.
+
 		void draw(Terrain terrain);
 		void update(Terrain& terrain);
 		void init(Terrain& terrain, float padding, float minAltitude, float maxAltitude, float speed, Color color);

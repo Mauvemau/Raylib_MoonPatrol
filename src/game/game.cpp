@@ -78,23 +78,22 @@ namespace MoonPatrol {
 			paused = value;
 		}
 
+		float getFloorElevation(float xPos) {
+			return Terrains::elevation(floor, xPos);
+		}
+
 		float getTime() {
 			float curTime = (static_cast<int>(chrono::duration_cast<chrono::milliseconds>(chrono::steady_clock::now() - startTime).count())) * .001f;
 			return curTime;
-		}
-
-		float getFloorHeight(float xPos) {
-			static_cast<void>(xPos);
-			return (GetScreenHeight() * .8f);
 		}
 
 		void update() {
 			if (!paused) {
 				Input::update(player);
 
-				Vehicles::update(player, getFloorHeight(0));
+				Vehicles::update(player);
 
-				//Obstacles::update(obstacle, 300.0f);
+				Obstacles::update(obstacle);
 
 				Terrains::update(floor);
 				Terrains::update(mountainsNear);
@@ -120,12 +119,19 @@ namespace MoonPatrol {
 		void init() {
 			startTime = chrono::steady_clock::now();
 
-			Vehicles::init(player, 400.0f, .5f, 1.0f);
-			Obstacles::init(obstacle);
-
-			Terrains::init(floor, GetScreenWidth() * .1f, GetScreenHeight() * .85f, GetScreenHeight() * .75f, 300.0f, {230, 180, 80, 255});
+			Terrains::init(floor, GetScreenWidth() * .1f, GetScreenHeight() * .85f, GetScreenHeight() * .75f, 300.0f, { 230, 180, 80, 255 });
 			Terrains::init(mountainsNear, GetScreenWidth() * .2f, GetScreenHeight() * .7f, GetScreenHeight() * .5f, 100.0f, { 145, 120, 50, 255 });
 			Terrains::init(mountainsBack, GetScreenWidth() * .3f, GetScreenHeight() * .7f, GetScreenHeight() * .4f, 50.0f, { 40, 30, 15, 255 });
+
+			Vehicles::init(player,
+						  { static_cast<float>(GetScreenWidth() * .2f), getFloorElevation(static_cast<float>(GetScreenWidth() * .2f)) },
+						  { static_cast<float>(GetScreenHeight() * .2f), static_cast<float>(GetScreenHeight() * .2f) },
+						   400.0f, .5f, .4f, static_cast<float>(GetScreenHeight() * .05));
+
+			Obstacles::init(obstacle, 
+				{ static_cast<float>((GetScreenWidth() * 1) + obstacle.size.x) , getFloorElevation(static_cast<float>((GetScreenWidth() * 1) + (obstacle.size.x * 1.5f))) },
+				{ static_cast<float>(GetScreenHeight() * .1f), static_cast<float>(GetScreenHeight() * .1f) },
+				300.0f);
 
 			paused = false;
 			pauseStartTime = chrono::steady_clock::now();

@@ -11,6 +11,7 @@ namespace MoonPatrol {
 			float speed;
 			float gravity;
 			float jumpForce;
+			float heigth; // Separación del piso.
 			Color color;
 		};
 
@@ -22,7 +23,7 @@ namespace MoonPatrol {
 		void move(Vehicle& vehicle, int direction);
 
 		void draw(Vehicle vehicle);
-		void update(Vehicle& vehicle, float floorLevel);
-		void init(Vehicle& vehicle, float speed, float jumpForce, float gravity);
+		void update(Vehicle& vehicle);
+		void init(Vehicle& vehicle, Vector2 position, Vector2 size, float speed, float gravity, float jumpForce, float height);
 	}
 }
