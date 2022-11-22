@@ -1,9 +1,12 @@
-
 #include "vehicle.h"
-#include "collisionManager.h"
+
 #include "game.h"
+#include "collisionManager.h"
+#include "utils.h"
 
 #include <iostream>
+
+using namespace std;
 
 namespace MoonPatrol {
 	namespace Vehicles {
@@ -12,7 +15,15 @@ namespace MoonPatrol {
 
 		bool floored;
 
+		void InitVehicleWeapons(Weapons::Weapon weapons[]);
+
 		// --
+
+		void InitVehicleWeapons(Weapons::Weapon weapons[]) {
+			for (int i = 0; i < amountWeapons; i++) {
+				weapons[i] = Weapons::create();
+			}
+		}
 
 		// Public
 
@@ -26,11 +37,18 @@ namespace MoonPatrol {
 			vehicle.jumpForce = 0;
 			vehicle.heigth = 0;
 			vehicle.color = RAYWHITE;
+			InitVehicleWeapons(vehicle.weapons);
 			return vehicle;
 		}
 
 		void setColor(Vehicle& vehicle, Color color) {
 			vehicle.color = color;
+		}
+
+		void shoot(Vehicle& vehicle) {
+			for (int i = 0; i < amountWeapons; i++) {
+				Weapons::shoot(vehicle.weapons[i], { vehicle.position.x + (vehicle.size.x * .5f) , vehicle.position.y + (vehicle.size.y * .5f) }, Utils::DegreesToRadians(-90.0f));
+			}
 		}
 
 		void jump(Vehicle& vehicle) {
@@ -84,6 +102,7 @@ namespace MoonPatrol {
 			vehicle.jumpForce = jumpForce;
 			vehicle.heigth = height;
 			vehicle.color = RED;
+			vehicle.weapons[0] = Weapons::createWeaponFromTemplate(Weapons::Types::GUN);
 
 			floored = false;
 		}

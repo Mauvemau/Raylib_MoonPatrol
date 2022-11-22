@@ -1,7 +1,13 @@
 #include "objectManager.h"
 
+#include "collisionManager.h"
+
 // Objects
 #include "bullet.h"
+
+#include <iostream>
+
+using namespace std;
 
 namespace MoonPatrol {
 	namespace ObjectManager {
@@ -44,6 +50,9 @@ namespace MoonPatrol {
 			// Bullets
 			for (int i = 0; i < activeBullets; i++) {
 				Bullets::update(bullets[i]);
+				if (Collisions::bulletWall(bullets[i])) {
+					removeBullet(i);
+				}
 			}
 
 		}

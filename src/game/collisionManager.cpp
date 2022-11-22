@@ -18,6 +18,11 @@ namespace MoonPatrol {
 
 		// Public
 
+		bool bulletWall(Bullets::Bullet bullet) {
+			return (bullet.position.x - bullet.radius <= 0 || bullet.position.y - bullet.radius <= 0 ||
+					bullet.position.x + bullet.radius >= GetScreenWidth() || bullet.position.y + bullet.radius >= GetScreenHeight());
+		}
+
 		bool vehicleWall(Vehicles::Vehicle vehicle) {
 			return (vehicle.position.x < 0 || (vehicle.position.x + vehicle.size.x) > GetScreenWidth());
 		}

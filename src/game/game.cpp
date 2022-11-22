@@ -1,10 +1,14 @@
 #include "game.h"
+
 #include "programManager.h"
+#include "inputManager.h"
+#include "collisionManager.h"
+#include "objectManager.h"
+
+// Objects
 #include "terrain.h"
 #include "vehicle.h"
 #include "obstacle.h"
-#include "inputManager.h"
-#include "collisionManager.h"
 
 #include <iostream>
 #include <chrono>
@@ -43,6 +47,8 @@ namespace MoonPatrol {
 			Vehicles::draw(player);
 
 			Obstacles::draw(obstacle);
+
+			ObjectManager::draw();
 
 			DrawText(getProgramVersion(), 
 				static_cast<int>(GetScreenHeight() * .01f), 
@@ -93,6 +99,8 @@ namespace MoonPatrol {
 
 				Vehicles::update(player);
 
+				ObjectManager::update();
+
 				Obstacles::update(obstacle);
 
 				Terrains::update(floor);
@@ -126,12 +134,14 @@ namespace MoonPatrol {
 			Vehicles::init(player,
 						  { static_cast<float>(GetScreenWidth() * .2f), getFloorElevation(static_cast<float>(GetScreenWidth() * .2f)) },
 						  { static_cast<float>(GetScreenHeight() * .2f), static_cast<float>(GetScreenHeight() * .2f) },
-						   400.0f, .5f, .4f, static_cast<float>(GetScreenHeight() * .05));
+						   400.0f, .5f, .4f, 0);
 
 			Obstacles::init(obstacle, 
 				{ static_cast<float>((GetScreenWidth() * 1) + obstacle.size.x) , getFloorElevation(static_cast<float>((GetScreenWidth() * 1) + (obstacle.size.x * 1.5f))) },
 				{ static_cast<float>(GetScreenHeight() * .1f), static_cast<float>(GetScreenHeight() * .1f) },
 				300.0f);
+
+			ObjectManager::init();
 
 			paused = false;
 			pauseStartTime = chrono::steady_clock::now();
