@@ -159,6 +159,7 @@
     <ClCompile Include="src\game\obstacle.cpp" />
     <ClCompile Include="src\game\terrain.cpp" />
     <ClCompile Include="src\game\vehicle.cpp" />
+    <ClCompile Include="src\game\weapon.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\menu\button.cpp" />
     <ClCompile Include="src\menu\credits.cpp" />
@@ -175,6 +176,7 @@
     <ClInclude Include="src\game\obstacle.h" />
     <ClInclude Include="src\game\terrain.h" />
     <ClInclude Include="src\game\vehicle.h" />
+    <ClInclude Include="src\game\weapon.h" />
     <ClInclude Include="src\menu\button.h" />
     <ClInclude Include="src\menu\credits.h" />
     <ClInclude Include="src\menu\mainMenu.h" />

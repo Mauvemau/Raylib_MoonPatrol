@@ -61,6 +61,9 @@
     <ClCompile Include="src\game\objectManager.cpp">
       <Filter>Source Files\Game</Filter>
     </ClCompile>
+    <ClCompile Include="src\game\weapon.cpp">
+      <Filter>Source Files\Game\Objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\programManager.h">
@@ -101,6 +104,9 @@
     </ClInclude>
     <ClInclude Include="src\game\objectManager.h">
       <Filter>Source Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="src\game\weapon.h">
+      <Filter>Source Files\Game\Objects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
