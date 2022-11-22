@@ -89,7 +89,7 @@ namespace MoonPatrol {
 				vehicle.position.y = floorElevation - vehicle.size.y - vehicle.heigth;
 			}
 
-			vehicle.position.y += vehicle.verticalAcceleration;
+			vehicle.position.y += vehicle.verticalAcceleration * GetFrameTime();
 		}
 
 		void init(Vehicle& vehicle, Vector2 position, Vector2 size, float speed, float gravity, float jumpForce, float height) {
