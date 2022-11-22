@@ -25,6 +25,7 @@ namespace MoonPatrol {
 			bullet.directionAngle = 0;
 			bullet.speed = 0;
 			bullet.hurtsPlayer = 0;
+			return bullet;
 		}
 
 		void draw(Bullet bullet) {

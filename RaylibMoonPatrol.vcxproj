@@ -151,9 +151,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\game\bullet.cpp" />
     <ClCompile Include="src\game\collisionManager.cpp" />
     <ClCompile Include="src\game\game.cpp" />
     <ClCompile Include="src\game\inputManager.cpp" />
+    <ClCompile Include="src\game\objectManager.cpp" />
     <ClCompile Include="src\game\obstacle.cpp" />
     <ClCompile Include="src\game\terrain.cpp" />
     <ClCompile Include="src\game\vehicle.cpp" />
@@ -165,9 +167,11 @@
     <ClCompile Include="src\utils.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\game\bullet.h" />
     <ClInclude Include="src\game\collisionManager.h" />
     <ClInclude Include="src\game\game.h" />
     <ClInclude Include="src\game\inputManager.h" />
+    <ClInclude Include="src\game\objectManager.h" />
     <ClInclude Include="src\game\obstacle.h" />
     <ClInclude Include="src\game\terrain.h" />
     <ClInclude Include="src\game\vehicle.h" />
