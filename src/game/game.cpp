@@ -23,7 +23,6 @@ namespace MoonPatrol {
 
 		Vehicles::Vehicle player;
 		Obstacles::Obstacle obstacle;
-		Enemies::Enemy enemy;
 
 		Terrains::Terrain floor;
 		Terrains::Terrain mountainsNear;
@@ -31,12 +30,33 @@ namespace MoonPatrol {
 
 		chrono::steady_clock::time_point startTime;
 
+		int score;
+
 		bool paused;
 		chrono::steady_clock::time_point pauseStartTime; // En caso del juego estar pausado por determinado tiempo, se lo sumamos al startTime.
 
+		int enemySoftCap;
+
+		void handleGameLogic();
 		void draw();
 
 		// --
+
+		void handleGameLogic() {
+			if (ObjectManager::getActiveEnemies() < enemySoftCap) {
+				int direction = -1;
+				int aux = GetRandomValue(0, 1);
+				if (aux) {
+					direction = abs(direction);
+				}
+				float altitude;
+				int altitudeMultiplier = GetRandomValue(20, 40);
+				altitude = altitudeMultiplier * .01f;
+				float speed = static_cast<float>(GetRandomValue(100, 200));
+
+				ObjectManager::addEnemy(GetScreenHeight() * altitude, GetScreenHeight() * .045f, speed, direction);
+			}
+		}
 
 		void draw() {
 			BeginDrawing();
@@ -50,14 +70,18 @@ namespace MoonPatrol {
 
 			Obstacles::draw(obstacle);
 
-			Enemies::draw(enemy);
-
 			ObjectManager::draw();
 
-			DrawText(getProgramVersion(), 
+			DrawText(TextFormat("Version: %s", getProgramVersion()),
 				static_cast<int>(GetScreenHeight() * .01f), 
 				static_cast<int>(GetScreenHeight() * .01f), 
 				static_cast<int>(GetScreenHeight() * .04f), 
+				RAYWHITE);
+
+			DrawText(TextFormat("Score: %i", score),
+				static_cast<int>(GetScreenHeight() * .01f),
+				static_cast<int>(GetScreenHeight() * .045f),
+				static_cast<int>(GetScreenHeight() * .05f),
 				RAYWHITE);
 
 			DrawText("Press [ESC] key to return to the menu",
@@ -88,6 +112,10 @@ namespace MoonPatrol {
 			paused = value;
 		}
 
+		void setScore(int value) {
+			score = value;
+		}
+
 		float getFloorElevation(float xPos) {
 			return Terrains::elevation(floor, xPos);
 		}
@@ -95,6 +123,10 @@ namespace MoonPatrol {
 		float getTime() {
 			float curTime = (static_cast<int>(chrono::duration_cast<chrono::milliseconds>(chrono::steady_clock::now() - startTime).count())) * .001f;
 			return curTime;
+		}
+
+		int getScore() {
+			return score;
 		}
 
 		void update() {
@@ -107,7 +139,7 @@ namespace MoonPatrol {
 
 				Obstacles::update(obstacle);
 
-				Enemies::update(enemy);
+				handleGameLogic();
 
 				Terrains::update(floor);
 				Terrains::update(mountainsNear);
@@ -147,12 +179,14 @@ namespace MoonPatrol {
 				{ static_cast<float>(GetScreenHeight() * .1f), static_cast<float>(GetScreenHeight() * .1f) },
 				300.0f);
 
-			Enemies::init(enemy, GetScreenHeight() * .25f, 1, GetScreenWidth() * .05f, 100.0f, Weapons::create());
-
 			ObjectManager::init();
 
 			paused = false;
 			pauseStartTime = chrono::steady_clock::now();
+
+			enemySoftCap = 2;
+
+			score = 0;
 		}
 
 	}

@@ -153,6 +153,7 @@
   <ItemGroup>
     <ClCompile Include="src\game\bullet.cpp" />
     <ClCompile Include="src\game\collisionManager.cpp" />
+    <ClCompile Include="src\game\enemy.cpp" />
     <ClCompile Include="src\game\game.cpp" />
     <ClCompile Include="src\game\inputManager.cpp" />
     <ClCompile Include="src\game\objectManager.cpp" />
@@ -170,6 +171,7 @@
   <ItemGroup>
     <ClInclude Include="src\game\bullet.h" />
     <ClInclude Include="src\game\collisionManager.h" />
+    <ClInclude Include="src\game\enemy.h" />
     <ClInclude Include="src\game\game.h" />
     <ClInclude Include="src\game\inputManager.h" />
     <ClInclude Include="src\game\objectManager.h" />

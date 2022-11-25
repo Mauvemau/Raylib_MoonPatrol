@@ -16,7 +16,7 @@ namespace MoonPatrol {
 	const int screenHeight = 768;
 
 	const char* programName = "Moon Patrol";
-	const char* programVersion = "0.2";
+	const char* programVersion = "0.3";
 
 	static void initRespectiveStatus(ProgramStatus status);
 	static void closeProgram();
@@ -67,7 +67,8 @@ namespace MoonPatrol {
 	}
 
 	void initProgram() {
-		InitWindow(screenWidth, screenHeight, programName);
+		InitWindow(screenWidth, screenHeight, TextFormat("Moon Patrol - v%s", programVersion));
+		//SetTargetFPS(15);
 		SetExitKey(KEY_NULL); // No queremos que la ventana se cierre con escape.
 		//Assets::Init(); // Cargamos los assets.
 		//Settings::InitSettings(); // Se inicializan las settings default cuando se ejecuta el programa.
