@@ -101,6 +101,11 @@ namespace MoonPatrol {
 					static_cast<int>(GetScreenHeight() * .5f),
 					static_cast<int>(GetScreenHeight() * .035f),
 					RAYWHITE);
+				DrawText(TextFormat("Your Score: %i", score),
+						static_cast<int>(GetScreenWidth() * .05f),
+						static_cast<int>(GetScreenHeight() * .55f),
+						static_cast<int>(GetScreenHeight() * .04f),
+						RAYWHITE);
 			}
 
 			EndDrawing();
